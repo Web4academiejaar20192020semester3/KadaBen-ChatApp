@@ -15,7 +15,7 @@ public class LogIn extends RequestHandler {
 	@Override
 	public String handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		String destination = "index.jsp";
+		String destination = "chat.jsp";
 		List<String> errors = new ArrayList<String>();
 		
 		String email = request.getParameter("email");
@@ -31,6 +31,7 @@ public class LogIn extends RequestHandler {
 		if (errors.size() == 0) {
 			PersonService personService = super.getPersonService();
 			Person person = personService.getAuthenticatedUser(email, password);
+			person.setStatus("Online");
 			if (person != null) {
 				createSession(person, request, response);
 			} else {
@@ -40,6 +41,7 @@ public class LogIn extends RequestHandler {
 		
 		if (errors.size() > 0) {
 			request.setAttribute("errors", errors);
+			destination = "index.jsp";
 		}
 		
 		return destination;	

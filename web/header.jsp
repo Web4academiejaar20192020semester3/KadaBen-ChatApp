@@ -1,22 +1,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header role="banner">
-    <div style="align-content: center">
-        <img alt="Books" src="images/free-banner-png-free-download-free-png-banners-530_530.png" style="max-height: 370px">
-    </div>
+<img alt="Books" src="images/banner.jpg">
 <h1><span>Chat App</span></h1>
 <nav>
 <ul>
 <c:choose>
-<c:when test="${param.title=='Home'}">
+<c:when test="${user==null}">
 <li  id="actual"><a href="Controller">Home</a></li>
 </c:when>
 <c:otherwise>
 <li><a href="Controller">Home</a></li>
+<li><a href="Controller?action=Chat">Chat</a></li>
 </c:otherwise>
 </c:choose>
-
-
 </ul>
 </nav>
 <h2>

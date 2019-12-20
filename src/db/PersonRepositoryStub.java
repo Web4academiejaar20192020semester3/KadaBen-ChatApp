@@ -12,20 +12,20 @@ public class PersonRepositoryStub implements PersonRepository {
 	private Map<String, Person> persons = new HashMap<String, Person>();
 	
 	public PersonRepositoryStub () {
-		Person administrator = new Person("bib@ucll.be", "t", "Bib", "Liothekaris", Role.BIB);
-		Person jan = new Person("jan@ucll.be", "t", "Jan", "Janssens", Role.LID);
-		Person an = new Person("an@ucll.be", "t", "An", "Cornelissen", Role.LID);
-
-		jan.addFriend(an);
-		an.addFriend(jan);
-
+		Person administrator = new Person("bib@ucll.be", "t", "Bib", "Liothekaris", "25", "Male", Role.BIB);
 		add(administrator);
+		Person jan = new Person("jan@ucll.be", "t", "Jan", "Janssens", "22", "Male", Role.LID);
 		add(jan);
+		Person an = new Person("an@ucll.be", "t", "An", "Cornelissen", "21", "Female", Role.LID);
 		add(an);
+		an.addFriend(jan);
+		jan.addFriend(an);
+		Person t = new Person("t", "t", "t", "tmans", "19", "Male", Role.BIB);
+		add(t);
 	}
 	
-	public Person get(String personId){
-		if(personId == null){
+	public Person get(String personId) {
+		if (personId == null) {
 			throw new IllegalArgumentException("No id given");
 		}
 		return persons.get(personId);
